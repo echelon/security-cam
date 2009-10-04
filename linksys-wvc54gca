@@ -1,0 +1,9 @@
+Video feeds:
+	* MJPEG: http://*.*.*.*/img/mjpeg.cgi
+	* MJPEG: http://*.*.*.*/img/video.mjpeg
+	* MPEG: http://*.*.*.*/img/video.asf
+
+Snapshots:
+	* http://*.*.*.*/img/snapshot.cgi?size=SIZE&quality=QUALITY
+		* SIZE = 1-3 (optional, 3 is largest)
+		* QUALITY = 1-5 (optional, 1 is highest)
