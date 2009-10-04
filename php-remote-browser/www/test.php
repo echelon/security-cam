@@ -1,29 +1,23 @@
 <?php
 
 require_once('../script/File.php');
+require_once('../script/Image.php');
 
-function indent($indent = 0)
+
+$imgdir = new File("./uploads");
+
+foreach($imgdir as $file) 
 {
-	for($i = 0; $i < $indent; $i++) {
-		print "...";
+	if($file->isDir() || $file->extension() != "jpg") {
+		continue;
 	}
+	$img = new Image($file);
+
+	$img->makeThumbnail("./uploads/thumbs/t" . $file->basename(), 100, 100);
+
 }
 
-function dirPrint($dir, $indent = 0)
-{
-	foreach($dir as $file) {
-		indent($indent);
-		if(!$file->isDir()) {
-			echo $file . "<br />";
-			continue;
-		}
-		echo "<u>" . $file . "</u><br />";
-		dirPrint($file, $indent+1);
-	}
-}
 
-//echo new File(".");
-//exit;
-dirPrint(new File(".."));
+
 
 

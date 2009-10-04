@@ -3,6 +3,10 @@
 # Config files
 *myconfigs.php
 
+# Uploaded image files (and thumbnails)
+php-remote-browser/www/uploads/*.jpg
+php-remote-browser/www/uploads/thumbs/*jpg
+
 #### Generic Ignore ####
 
 # Generated files
