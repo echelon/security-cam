@@ -7,8 +7,9 @@
  * echelon@gmail.com
  */
 
-require_once('./user.php');
-require_once('./config.php');
+require_once('User.php');
+require_once('Config.php');
+require_once('HttpHelper.php');
 
 /**
  * Rudimentary Authentication system.
@@ -18,10 +19,10 @@ class Auth
 	/**
 	 * Possible state list
 	 */
-	const $NOT_LOGGED_IN	= 0;
-	const $LOGGED_IN		= 1;
-	const $FAILED_LOGIN		= 2;
-	const $REDIRECTING		= 3; // Logging in, out, or removing invalid cookies
+	const NOT_LOGGED_IN	= 0;
+	const LOGGED_IN		= 1;
+	const FAILED_LOGIN	= 2;
+	const REDIRECTING	= 3; // Logging in, out, or removing invalid cookies
 
 	/**
 	 * Credential status.
@@ -50,7 +51,7 @@ class Auth
 	public function dispatch()
 	{
 		if(array_key_exists('username', $_POST)) {
-			return $this->doLogin()
+			return $this->doLogin();
 		}
 		if(array_key_exists('logout', $_GET)) {
 			return $this->doLogout();
@@ -81,39 +82,47 @@ class Auth
 	 */
 	protected function doLogin()
 	{
-		$post = HttpAuth::getPost();
+		$post = HttpHelper::getPost();
 		if(!$post) {
 			return false;
 		}
 
-		$user = User($post['username'], NULL, $post['password']);
+		$user = NULL;
+		try {
+			$user = new User($post['username'], NULL, $post['password']);
+		}
+		catch(Exception $e) {}
 
-		if(!$this->checkUserValidity($user)) {
+		if(!$user || !$this->checkUserValidity($user)) {
 			$this->status = self::FAILED_LOGIN;
 			return false;
 		}
 
 		$this->status = self::REDIRECTING;
-		HttpAuth::setCookies($user);
-		HttpAuth::redirect('/'); // exits script
+		HttpHelper::setCookies($user);
+		HttpHelper::redirect('/'); // exits script
 	}
 
 	protected function doLogout()
 	{
 		$this->status = self::REDIRECTING;
-		HttpAuth::unsetCookies();
-		HttpAuth::redirect('/'); // exits script
+		HttpHelper::unsetCookies();
+		HttpHelper::redirect('/'); // exits script
 	}
 
 	protected function doVerifyCookies()
 	{
-		$cookies = HttpAuth::getCookies();
-		$user = User($cookies['username'], $cookies['passhash']);
+		$cookies = HttpHelper::getCookies();
+		$user = NULL;
+		try {
+			$user = new User($cookies['username'], $cookies['passhash']);
+		}
+		catch(Exception $e) {}
 
-		if(!$this->checkUserValidity($user)) {
+		if(!$user || !$this->checkUserValidity($user)) {
 			$this->status = self::REDIRECTING;
-			HttpAuth::unsetCookies();
-			HttpAuth::redirect('/'); // exits script
+			HttpHelper::unsetCookies();
+			HttpHelper::redirect('/'); // exits script
 			return false;
 		}
 		$this->user = $user;

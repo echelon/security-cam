@@ -10,9 +10,7 @@ $configs = array
 	'camDomain'		=> '',
 
 	// Days the cookie should last
-	'cookieDays'	=> 10,
-
-	
+	'cookieDays'	=> 10,	
 );
 
 // Valid users for the system, passhash is sha1 (unsalted).

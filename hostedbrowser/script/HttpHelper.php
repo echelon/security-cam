@@ -12,7 +12,7 @@ class HttpHelper
 	 */
 	static public function redirect($location = '/')
 	{
-		header('Location: ' + $location);
+		header('Location: ' . $location);
 		exit();
 	}
 
@@ -41,8 +41,8 @@ class HttpHelper
 				return false;
 		}
 		return array(
-			'username' => $_POST['username'],
-			'passhash' => $_POST['passhash']
+			'username' => $_COOKIE['username'],
+			'passhash' => $_COOKIE['passhash']
 		);
 	}
 
@@ -52,8 +52,8 @@ class HttpHelper
 	static public function setCookies(User $user)
 	{
 		$config = Config::getInstance();
-
 		$expire = time() + 60*60*24 * (int)$config->cookieDays;
+
 		setcookie('username', $user->getUsername(), $expire, '/', 
 					$config->domain);
 		setcookie('passhash', $user->getPasshash(), $expire, '/', 
@@ -65,7 +65,8 @@ class HttpHelper
 	 */
 	static public function unsetCookies()
 	{
-		$expire = time() - 1000000;
+		$config = Config::getInstance();
+		$expire = time() - 1000000000;
 		setcookie('username', '', $expire, '/', $config->domain);
 		setcookie('passhash', '', $expire, '/', $config->domain);
 	}

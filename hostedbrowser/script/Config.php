@@ -25,6 +25,11 @@ class Config
 	private $userlist = array();
 
 	/**
+	 * If the configs file has already been read.
+	 */
+	private $configsRead = false;
+
+	/**
 	 * Singleton/Uncallable CTOR.
 	 */
 	private function __construct() {}
@@ -38,6 +43,35 @@ class Config
 			self::$instance = new Config();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Read the typical config files.
+	 * Configs can only exist in ../myconfigs.php or ../configs.php
+	 */
+	public function readConfig()
+	{
+		if($this->configsRead) {
+			return;
+		}
+		$this->configsRead = true;
+
+		if(file_exists('../myconfigs.php')) {
+			require_once('../myconfigs.php');
+			$this->setConfigs($configs);
+			$this->addUsers($users);
+			return;
+		}
+
+		if(file_exists('../configs.php')) {
+			require_once('../configs.php');
+			$this->setConfigs($configs);
+			$this->addUsers($users);
+			return;
+		}
+
+		echo "CAN'T READ CONFIG!";
+		exit();
 	}
 
 	/**
@@ -107,8 +141,8 @@ class Config
 	 */
 	public function addUsers(array $users)
 	{
-		foreach($user in $users) {
-			if(!($user instanceof User) || !is_array($user)) {
+		foreach($users as $user) {
+			if(!($user instanceof User) && !is_array($user)) {
 				continue;
 			}
 			if(is_array($user)) {
@@ -116,7 +150,7 @@ class Config
 				   !array_key_exists('passhash', $user)) {
 						continue;
 				}
-				$user = User($user['username'], $user['passhash']);
+				$user = new User($user['username'], $user['passhash']);
 			}
 
 			if(in_array($user, $this->userlist)) {

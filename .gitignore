@@ -1,7 +1,7 @@
 #### Project Specific Ignore ####
 
 # Config files
-myconfigs.php
+*myconfigs.php
 
 #### Generic Ignore ####
 

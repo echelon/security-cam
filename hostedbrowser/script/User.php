@@ -19,15 +19,11 @@ class User
 			throw new Exception("Password or passhash not set!");
 		}
 		if($passhash && strlen($passhash) != 40) {
-			throw new Exception("Passhash not valid.");
+			throw new Exception("Passhash not a valid sha1 string.");
 		}
 		$this->username = $username;
-		$this->password = $password;
-	public function getStatus()
-	{
-		return $this->status;
-	}
 		$this->passhash = $passhash;
+		$this->password = $password;
 	}
 
 	/**
@@ -43,7 +39,7 @@ class User
 	 */
 	function getPasshash()
 	{
-		if(isset($this->password) {
+		if(isset($this->password)) {
 			$this->passhash = sha1($this->password);
 			return $this->passhash;
 		}
