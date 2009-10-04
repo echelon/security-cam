@@ -1,4 +1,12 @@
 <?php
+/**
+ * Copyright 2009 Brandon Thomas Suit
+ * Available under the BSD and MIT
+ * http://possibilistic.org
+ * echelon@gmail.com
+ */
+
+// No local dependencies
 
 /**
  * Represents a file or directory, or a hypothetical file or directory.

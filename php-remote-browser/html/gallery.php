@@ -3,7 +3,7 @@
 // Gallery of thumbnails...
 $i = 0;
 foreach($images as $img) {
-	if($i != 0 && $i % 6 == 0) {
+	if($i != 0 && $i % 5 == 0) {
 		echo "<br />";
 	}
 ?>

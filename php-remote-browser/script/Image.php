@@ -1,11 +1,20 @@
 <?php
+/**
+ * Copyright 2009 Brandon Thomas Suit
+ * Available under the BSD and MIT
+ * http://possibilistic.org
+ * echelon@gmail.com
+ */
 
-// We have support for Image(File("image.jpg")) !!
+// We have support for Image(File("image.jpg")), etc. !!
 require_once("File.php");
 
 /**
  * Image class wraps PHP's image and GD functions that I use into a more useful
  * and logical system. Thumbnail generation is added.
+ * In general, this wraps image files and performs operations on them. In the 
+ * future it should be able to create new images. (TODO) 
+ * Wrap both the GD and ImageMagick models/APIs (TODO)
  */
 class Image
 {

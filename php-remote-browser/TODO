@@ -1,0 +1,13 @@
+* Add File->filesize(), and use it to prevent thumbnail generation of
+  images with sizes approximately zero.
+
+* Fix the thumbnail date categorization--everything is out of place.
+
+* Make a cron job/script to update the camera clock regularly
+* Make a cron job/script to log times when the camera is offline/network
+  unavailable.
+
+* In general, make scripts that wrap all of the camera admin functionality
+
+* Application MVC-like architecture
+* View/Template system. Perhaps adopt Smarty again?
