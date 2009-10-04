@@ -44,6 +44,15 @@ switch($status) {
 		break;		
 }
 
+if(array_key_exists('gallery', $_GET)) {
+	require_once 'imagepage.php';
+	$title = 'Motion Detection Gallery';
+	$page = 'gallery';
+}
+else if(array_key_exists('live', $_GET)) {
+	$page = 'camview';
+}
+
 // Include HTML base file (very simple)
 require_once('../html/main.php');
 
