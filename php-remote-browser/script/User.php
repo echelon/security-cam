@@ -1,7 +1,15 @@
 <?php
+/**
+ * Copyright 2009 Brandon Thomas Suit
+ * Available under the BSD and MIT
+ * http://possibilistic.org
+ * echelon@gmail.com
+ */
+
+// No requires
 
 /**
- * Represents a user or hypothetical user.
+ * Represents a user or "hypothetical user" that isn't yet authenticated.
  * Can be used in the authentication/login procedure.
  */
 class User

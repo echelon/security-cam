@@ -1,0 +1,29 @@
+About the `security-cam` project:
+
+This document serves mostly as a planning document. The project may not evolve 
+much if I can't get more hardware.
+
+I recently bought the Linksys WVC54GCA security camera as it was both intriguing 
+and on clearance. I have been wanting to put a bunch of cameras up to deter
+criminals and pesky neighbors who let their dogs urinate/defecate on the lawn.
+Also, it will be fun for determining when mail and packages are delivered while
+I am away from home.
+
+Right now, the project is very primative. This only displays a video feed that
+is hosted by the camera itself. In the future, I plan to coordinate multiple 
+camera feeds via a central server and algorithmically detect motion or more
+advanced features. This will entail creating at least two subprojects: 
+
+(1) The central server daemon that monitors/coordinates/manages the cameras, 
+hosts any streaming video and images to the outside world, and emails any 
+notifications. (I don't have a machine that can fulfill this role right now.)
+
+* I would likely write the bulk of this in Python, and if I do get to the point
+  where I write image recognition code, that will be written in a subset of C++.
+
+(2) The (optionally remote) script that displays feeds, images, alerts, etc. to
+the browser or cellphone of the owner. This could also allow for remote
+management of the cameras. 
+
+* I'm going to write this in PHP since Dreamhost isn't favorable to Python. I 
+  may change my mind, however. (PHP isn't too bad...)

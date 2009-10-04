@@ -1,6 +1,5 @@
 <?php
 /**
- * Very rudimentary user authentication
  * Copyright 2009 Brandon Thomas Suit
  * Available under the BSD and MIT
  * http://possibilistic.org
@@ -12,7 +11,11 @@ require_once('Config.php');
 require_once('HttpHelper.php');
 
 /**
- * Rudimentary Authentication system.
+ * A very rudimentary user authentication class.
+ * Handles the entire authentication process by calling dispatch().
+ * Can also be used to get the user object (of a logged in and valid user) as
+ * well as the authentication state: getStatus() and getUser() respectively.
+ * TODO: Better error system.
  */
 class Auth
 {

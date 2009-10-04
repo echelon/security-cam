@@ -1,8 +1,17 @@
 <?php
+/**
+ * Copyright 2009 Brandon Thomas Suit
+ * Available under the BSD and MIT
+ * http://possibilistic.org
+ * echelon@gmail.com
+ */
 
 /**
  * System bootstrap file. 
  * Everything begins here.
+ * TODO: This is very messy and seems insecure.
+ * TODO (SEVERE): The html template system I wrote is VERY bad. I don't want to 
+ * use something as heavy as smarty, but what I have now is terrible and lazy.
  */
 
 require_once('Config.php');

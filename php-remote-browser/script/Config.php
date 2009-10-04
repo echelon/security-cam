@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright 2009 Brandon Thomas Suit
+ * Available under the BSD and MIT
+ * http://possibilistic.org
+ * echelon@gmail.com
+ */
 
 require_once('User.php');
 
@@ -6,6 +12,7 @@ require_once('User.php');
  * Store configurations and valid users.
  * This is a singleton, so use getInstance() to get the config object.
  * Access configuration data with array key operators, eg $configs['key'].
+ * TODO: The configuration file import method is really bad...
  */
 class Config
 {

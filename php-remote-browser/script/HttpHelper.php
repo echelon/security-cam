@@ -1,9 +1,20 @@
 <?php
+/**
+ * Copyright 2009 Brandon Thomas Suit
+ * Available under the BSD and MIT
+ * http://possibilistic.org
+ * echelon@gmail.com
+ */
 
 require_once('Config.php');
 
 /**
  * A set of helper methods that deal with cookies/post data, etc.
+ * Note that these *only* do the bare minimum for helping user authentication.
+ * TODO: expand this to help with more HTTP concerns, or make a **pythonic** 
+ * wrapper for all of PHP's various functions for HTTP, server, filesystem, etc 
+ * to reuse in various future projects (that entails a lot more work and
+ * requires time).
  */
 class HttpHelper
 {
