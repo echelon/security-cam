@@ -25,6 +25,8 @@ $auth->dispatch();
 $user = $auth->getUser();
 $status = $auth->getStatus();
 
+$config->setFirewalled(); // XXX TEMP!
+
 $page = 'login';
 $title = 'Please Authenticate';
 $error = '';
@@ -45,12 +47,16 @@ switch($status) {
 }
 
 if(array_key_exists('gallery', $_GET)) {
-	require_once 'imagepage.php';
+	require_once('gallerypage.php');
 	$title = 'Motion Detection Gallery';
 	$page = 'gallery';
 }
 else if(array_key_exists('live', $_GET)) {
 	$page = 'camview';
+}
+else if(array_key_exists('ajaxgallery', $_GET)) {
+	$page = 'ajaxgallery';
+	$title = 'Ajax Gallery (updates)';
 }
 
 // Include HTML base file (very simple)

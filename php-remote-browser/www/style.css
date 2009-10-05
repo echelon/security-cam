@@ -1,0 +1,10 @@
+.error { 
+	color: #f00; 
+}
+#main {	
+	width: 800px; margin: auto; 
+}
+#gallery { 
+	text-align: center; 
+}
+

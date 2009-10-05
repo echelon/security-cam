@@ -1,7 +1,16 @@
 * Add File->filesize(), and use it to prevent thumbnail generation of
   images with sizes approximately zero.
 
-* Fix the thumbnail date categorization--everything is out of place.
+* Fix the thumbnail image gallery date categorization--everything is out of 
+  place.
+* Show general statistics (eg 5 new images since last visit), total # images
+* Cache thumbnail image gallery results
+* Paginate thumbnail image gallery results
+* Add a view for the full image with next and previous navigation and date
+  display. (Possibly animate sequences.)
+* Don't show whole sequence in thumbnail view--maybe only one or two belonging
+  to each sequence. Show full sequence thumbnail set below full image view with
+  current navigation "cursor"/highlight on the current thumbnail in the sequence
 
 * Make a cron job/script to update the camera clock regularly
 * Make a cron job/script to log times when the camera is offline/network
@@ -11,3 +20,6 @@
 
 * Application MVC-like architecture
 * View/Template system. Perhaps adopt Smarty again?
+
+* Gmail backup account management (prune old images > 1 mo)
+

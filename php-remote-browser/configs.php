@@ -6,12 +6,14 @@ $configs = array
 	// Domain name this script is hosted at
 	'domain'		=> $_SERVER['HTTP_HOST'],
 
-	// Domain the camera is hosted at
-	'camDomain'		=> '',
-
 	// Days the cookie should last
 	'cookieDays'	=> 10,	
 );
+
+// Cameras
+$cameras = array();
+$cameras[] = array('uri' => 'location',
+				   'model'	=> 'type');
 
 // Valid users for the system, passhash is sha1 (unsalted).
 $users = array();

@@ -7,6 +7,7 @@
  */
 
 require_once('User.php');
+require_once('Camera.php');
 
 /**
  * Store configurations and valid users.
@@ -32,9 +33,19 @@ class Config
 	private $userlist = array();
 
 	/**
+	 * List of cameras.
+	 */
+	private $cameraList = array();
+
+	/**
 	 * If the configs file has already been read.
 	 */
 	private $configsRead = false;
+
+	/**
+	 * If the network we're using is blocking ports other than 80.
+	 */
+	protected $isFirewalled = false;
 
 	/**
 	 * Singleton/Uncallable CTOR.
@@ -67,6 +78,7 @@ class Config
 			require_once('../myconfigs.php');
 			$this->setConfigs($configs);
 			$this->addUsers($users);
+			$this->addCameras($cameras);
 			return;
 		}
 
@@ -74,11 +86,28 @@ class Config
 			require_once('../configs.php');
 			$this->setConfigs($configs);
 			$this->addUsers($users);
+			$this->addCameras($cameras);
 			return;
 		}
 
 		echo "CAN'T READ CONFIG!";
 		exit();
+	}
+
+	/**
+	 * Set if we're behind a firewall.
+	 */
+	public function setFirewalled($f = true)
+	{
+		$this->isFirewalled = (bool)$f;
+	}
+
+	/**
+	 * Return firewalled state.
+	 */
+	public function getFirewalled()
+	{
+		return $this->isFirewalled;
 	}
 
 	/**
@@ -196,5 +225,34 @@ class Config
 		}
 		return false;
 	}
+
+	/**
+	 * Add an array of cameras to the configs.
+	 * User array can contain 'User' objects and/or arrays with 'username' and
+	 * 'passhash' keys.
+	 */
+	public function addCameras(array $cameras)
+	{
+		foreach($cameras as $cam) {
+			if(is_array($cam)) {
+				if(!array_key_exists('uri', $cam) || 
+				   !array_key_exists('model', $cam)) {
+						continue;
+				}
+				$cam = new Camera($cam['uri'], $cam['model']);
+			}
+			$this->cameraList[] = $cam;
+		}
+	}
+
+	/**
+	 * Get camera list.
+	 */
+	public function getCameras()
+	{
+		return $this->cameraList;
+	}
+
+
 }
 
