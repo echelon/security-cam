@@ -48,11 +48,41 @@ class Camera
 	 */
 	public function snapshotUri($size = false, $quality = false)
 	{
-		$snap = "/img/snapshot.cgi";
-		/**
-		 * TODO: /img/snapshot.cgi?size=SIZE&quality=QUALITY
-		* SIZE = 1-3 (optional, 3 is largest)
-		* QUALITY = 1-5 (optional, 1 is highest) */
+		// 1 smallest, 3 largest.
+		switch($size) {
+			case 1:
+			case 2:
+			case 3:
+				break;
+			default:
+				$size = false;
+		}
+
+		// Invert quality: 1 lowest, 5 highest.
+		switch($quality) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				$quality = abs($quality - 6);
+				break;
+			default:
+				$quality = false;
+		}
+
+		$snap = "/img/snapshot.cgi?";
+
+		if($size) {
+			$snap .= "size=" . $size . "&";
+		}
+		if($quality) {
+			$snap .= "quality=" . $quality;
+		}
+
+		// TODO: /img/snapshot.cgi?size=SIZE&quality=QUALITY
+		// SIZE = 1-3 (optional, 3 is largest)
+		// QUALITY = 1-5 (optional, 1 is highest)
 
 		return $this->returnUri($this->baseUri . $snap,
 			 "image/jpeg");
@@ -87,7 +117,8 @@ class Camera
 			return $uri;
 		}
 
-		$uri = "http://security.possibilistic.org/passthru.php?b&u=" . $uri;
+		$uri = urlencode($uri);
+		$uri = $config->firewallUri . $uri;
 		if($mime) {
 			$uri .= "&m=" . $mime;
 		}

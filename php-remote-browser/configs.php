@@ -6,6 +6,9 @@ $configs = array
 	// Domain name this script is hosted at
 	'domain'		=> $_SERVER['HTTP_HOST'],
 
+	// Firewall passthrough location
+	'firewallUri'	=> "http://DOMAIN/passthru.php?b&u=",
+
 	// Days the cookie should last
 	'cookieDays'	=> 10,	
 );
