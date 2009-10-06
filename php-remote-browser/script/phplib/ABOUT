@@ -1,0 +1,18 @@
+This library is for wrapping PHP's idiotic library in a more sensible way.
+I'll only be adding to this library as needed in any PHP projects I have, and
+that's almost never as I usually use Python where possible. 
+
+* File (incomplete)
+	* Wraps the filesystem functions
+	* Has a directory iterator that returns File objects
+	* TODO: Wrap everything in PHP's filesystem function library
+
+* Image (very incomplete)
+	* Gets image metadata
+	* Generates thumbnails of images
+	* TODO: Wrap GD and ImageMagick (and Cairo!! Awesome!)
+
+* TODO (Ideas for future API wrapping)
+	* String function wrapping
+	* Http layer (Curl, etc)
+	* XML/RDF (There's probably a lightweight library for RDF somewhere)

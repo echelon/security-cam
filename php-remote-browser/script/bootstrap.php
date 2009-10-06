@@ -14,18 +14,22 @@
  * use something as heavy as smarty, but what I have now is terrible and lazy.
  */
 
-require_once('Config.php');
+error_reporting(E_ALL|E_NOTICE|E_STRICT);
+ini_set('display_errors', 1);
+
+require_once('camlib/Config.php');
+require_once('camlib/Auth.php');
+
 $config = Config::getInstance();
 $config->readConfig();
 
-require_once('Auth.php');
 $auth = new Auth();
 $auth->dispatch();
 
 $user = $auth->getUser();
 $status = $auth->getStatus();
 
-$config->setFirewalled(); // XXX TEMP!
+//$config->setFirewalled(); // XXX TEMP!
 
 $page = 'login';
 $title = 'Please Authenticate';

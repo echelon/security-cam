@@ -1,0 +1,11 @@
+
+IMAGE (jpeg):
+	/image.jpg?cidx=2009106145926499
+
+MJPEG:
+	/mjpeg.cgi
+	/video.cgi?showlength=1
+
+
+IOCONTROL:
+	/iocontrol.cgi

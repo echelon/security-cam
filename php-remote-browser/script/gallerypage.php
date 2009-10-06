@@ -3,8 +3,8 @@
 // Image thumbnail page. 
 // TODO: Organize into MVC, or at least get rid fo this terrible arch.
 
-require_once('../script/File.php');
-require_once('../script/Image.php');
+require_once('phplib/File.php');
+require_once('phplib/Image.php');
 
 $imgdir = new File("./uploads");
 

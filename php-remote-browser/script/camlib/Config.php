@@ -8,6 +8,7 @@
 
 require_once('User.php');
 require_once('Camera.php');
+require_once('cameraFactory.php');
 
 /**
  * Store configurations and valid users.
@@ -239,7 +240,7 @@ class Config
 				   !array_key_exists('model', $cam)) {
 						continue;
 				}
-				$cam = new Camera($cam['uri'], $cam['model']);
+				$cam = cameraFactory($cam['uri'], $cam['model']);
 			}
 			$this->cameraList[] = $cam;
 		}

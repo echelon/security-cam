@@ -6,7 +6,7 @@
 	$i = 0;
 	foreach($config->getCameras() as $cam) {
 ?>
-		<img src="<?php echo $cam->snapshotUri(2, 1); ?>" class="ajaximg" 
+		<img src="<?php echo $cam->jpeg(2, 1); ?>" class="ajaximg" 
 			 id="ajaximg<?php echo $i; ?>" />
 <?php
 		$i++;
