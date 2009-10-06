@@ -12,8 +12,20 @@ function reload2b() {
 		if(tags[i].className != "ajaximg") {
 			continue;
 		}
-		tags[i].src = tags[i].src + '#' + time;
+		var uri = uriRemoveHash(tags[i].src);
+		if(!uri) {
+			uri = tags[i].src;
+		}
+		tags[i].src = uri + '#' + time;
 	}
+}
+
+/* Remove #foo... from the uri */
+function uriRemoveHash(uri)
+{
+	var regex = /([^#]*)#(.*)/gi; 
+	var r = uri.match(regex);
+	return RegExp.$1;
 }
 
 /* Document Ready Function */
