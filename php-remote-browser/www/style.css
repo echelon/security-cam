@@ -1,8 +1,39 @@
 .error { 
 	color: #f00; 
 }
+
+.cam_block {
+	width: 320px;
+	padding: 1px;
+	margin: 0px;
+	display: inline-block;
+	/*border: 1px solid #f00;*/
+	background-color: #eee;
+	color: #222;
+	font-family: helvetica;
+}
+
+.cam_info1 {
+	float: left;
+	text-align: left;
+	/*width: 320px;*/
+	/*display: inline-block;*/
+}
+.cam_info2 {
+	float: right;
+	text-align: right;
+	/*width: 320px;*/
+	/*display: inline-block;*/
+}
+
+.cam_img_container {
+	border: 0px;
+}
+
 #main {	
-	width: 1000px; margin: auto; 
+	min-width: 800px; 
+	max-width: 1000px;
+	margin: auto; 
 }
 #gallery { 
 	text-align: center; 

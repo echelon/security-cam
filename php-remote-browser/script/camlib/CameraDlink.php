@@ -15,7 +15,7 @@ class CameraDlink extends Camera
 	public function jpeg($size = false, $quality = false)
 	{
 		// Params are meaningless
-		return $this->returnUri($this->baseUri . "/image.jpg",
+		return $this->returnUri($this->preferredUri() . "/image.jpg",
 			 "image/jpeg");
 	}
 
@@ -24,7 +24,7 @@ class CameraDlink extends Camera
 	 */
 	public function mjpeg()
 	{
-		return $this->returnUri($this->baseUri . "/mjpeg.cgi",
+		return $this->returnUri($this->preferredUri() . "/mjpeg.cgi",
 			 "multipart/x-mixed-replace;boundary="); // TODO: Verify mimetype
 	}
 

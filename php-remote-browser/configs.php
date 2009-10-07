@@ -15,8 +15,10 @@ $configs = array
 
 // Cameras
 $cameras = array();
-$cameras[] = array('uri' => 'location',
-				   'model'	=> 'type');
+$cameras[] = array('model' => 'camera model',
+				   'name'  => 'memorable name for camera',
+				   'localUri'  => 'camera uri (eg. IP) inside your network',
+				   'remoteUri' => 'camera uri from outside your network');
 
 // Valid users for the system, passhash is sha1 (unsalted).
 $users = array();

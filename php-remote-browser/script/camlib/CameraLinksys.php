@@ -47,7 +47,7 @@ class CameraLinksys extends Camera
 
 		// SIZE = 1-3 (optional, 3 is largest)
 		// QUALITY = 1-5 (optional, 1 is highest)
-		return $this->returnUri($this->baseUri . $snap,
+		return $this->returnUri($this->preferredUri() . $snap,
 			 "image/jpeg");
 	}
 
@@ -56,7 +56,7 @@ class CameraLinksys extends Camera
 	 */
 	public function mjpeg()
 	{
-		return $this->returnUri($this->baseUri . "/img/video.mjpeg",
+		return $this->returnUri($this->preferredUri() . "/img/video.mjpeg",
 			 "multipart/x-mixed-replace;boundary="); // TODO: Verify this
 	}
 
@@ -65,7 +65,7 @@ class CameraLinksys extends Camera
 	 */
 	public function mpeg()
 	{
-		return $this->returnUri($this->baseUri . "/img/video.asf",
+		return $this->returnUri($this->preferredUri() . "/img/video.asf",
 			 "video/x-ms-asf"); // TODO: Verify this
 	}
 }

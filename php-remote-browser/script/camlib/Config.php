@@ -18,6 +18,9 @@ require_once('cameraFactory.php');
  */
 class Config
 {
+	const LOCAL = 0;
+	const REMOTE = 1;
+
 	/**
 	 * Singleton instance.
 	 */
@@ -49,6 +52,11 @@ class Config
 	protected $isFirewalled = false;
 
 	/**
+	 * Which URI to use, local or remote.
+	 */
+	protected $uriPreference = Config::LOCAL;
+
+	/**
 	 * Singleton/Uncallable CTOR.
 	 */
 	private function __construct() {}
@@ -62,6 +70,47 @@ class Config
 			self::$instance = new Config();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Set if we're behind a firewall.
+	 */
+	public function setFirewalled($f = true)
+	{
+		$this->isFirewalled = (bool)$f;
+	}
+
+	/**
+	 * Return firewalled state.
+	 */
+	public function getFirewalled()
+	{
+		return $this->isFirewalled;
+	}
+
+	/**
+	 * Set local vs. remote URI preference.
+	 */
+	public function setUriPreference($type)
+	{
+		switch($type) {
+			case "local":
+				$this->uriPreference = Config::LOCAL;
+				break;
+			case "remote":
+				$this->uriPreference = Config::REMOTE;
+				break;
+			default:
+				echo "Config::setUriPreference(): Wrong parameter supplied.";
+		}
+	}
+
+	/**
+	 * Get local vs. remote URI preference.
+	 */
+	public function getUriPreference()
+	{
+		return $this->uriPreference;
 	}
 
 	/**
@@ -93,22 +142,6 @@ class Config
 
 		echo "CAN'T READ CONFIG!";
 		exit();
-	}
-
-	/**
-	 * Set if we're behind a firewall.
-	 */
-	public function setFirewalled($f = true)
-	{
-		$this->isFirewalled = (bool)$f;
-	}
-
-	/**
-	 * Return firewalled state.
-	 */
-	public function getFirewalled()
-	{
-		return $this->isFirewalled;
 	}
 
 	/**
@@ -236,11 +269,12 @@ class Config
 	{
 		foreach($cameras as $cam) {
 			if(is_array($cam)) {
-				if(!array_key_exists('uri', $cam) || 
+				if((!array_key_exists('localUri', $cam) && 
+					 !array_key_exists('remoteUri', $cam)) ||
 				   !array_key_exists('model', $cam)) {
 						continue;
 				}
-				$cam = cameraFactory($cam['uri'], $cam['model']);
+				$cam = cameraFactory($cam);
 			}
 			$this->cameraList[] = $cam;
 		}

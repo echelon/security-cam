@@ -2,6 +2,7 @@
 
 // Image thumbnail page. 
 // TODO: Organize into MVC, or at least get rid fo this terrible arch.
+// ACTUAL TODO XXX: Move this functionality into camlib/Gallery.php class
 
 require_once('phplib/File.php');
 require_once('phplib/Image.php');

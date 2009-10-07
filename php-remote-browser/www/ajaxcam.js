@@ -9,7 +9,7 @@ function reload2b() {
 	var time = new Date().getTime();
 	var tags = document.getElementsByTagName("img");
 	for(var i = 0; i < tags.length; i++) {
-		if(tags[i].className != "ajaximg") {
+		if(tags[i].className != "cam_img") {
 			continue;
 		}
 		var uri = uriRemoveHash(tags[i].src);

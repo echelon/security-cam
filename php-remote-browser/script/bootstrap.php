@@ -29,7 +29,14 @@ $auth->dispatch();
 $user = $auth->getUser();
 $status = $auth->getStatus();
 
-//$config->setFirewalled(); // XXX TEMP!
+if(isset($_GET['firewall'])) {
+	$config->setFirewalled();
+}
+
+$config->setUriPreference("remote");
+if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+	//$config->setUriPreference("local");
+}
 
 $page = 'login';
 $title = 'Please Authenticate';

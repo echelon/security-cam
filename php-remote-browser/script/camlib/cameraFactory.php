@@ -7,13 +7,13 @@ require_once("CameraLinksys.php");
  * Camera Factory.
  * Returns correct Camera subclass.
  */
-function cameraFactory($url, $model)
+function cameraFactory($camConfig)
 {
-	switch($model) {
+	switch($camConfig['model']) {
 		case 'dlink-dcs920':
-			return new CameraDlink($url, $model);
+			return new CameraDlink($camConfig);
 		case 'linksys-wvc54gca':
-			return new CameraLinksys($url, $model);
+			return new CameraLinksys($camConfig);
 		default:
 			return false;
 	}
