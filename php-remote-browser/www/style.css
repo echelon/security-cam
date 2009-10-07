@@ -1,11 +1,50 @@
+
+/* ========== MAIN LAYOUT ========== */
+
+body {
+	font-family: verdana, arial;
+}
+
+#main {	
+	min-width: 800px; 
+	max-width: 1000px;
+	margin: auto; 
+}
+
+#navbar {
+	font-size: 13pt;
+	font-weight: none;
+}
+
+a:link, a:visited {
+	color: #449;
+	text-decoration: none;
+}
+
+a:active, a:hover {
+	color: #22a;
+	text-decoration: underline;
+}
+
+/* ========== COMMON CLASSES ========== */
+
 .error { 
 	color: #f00; 
+}
+
+/* ========== MULTI-CAMERA PAGE ========== */
+
+#cameras {
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
 }
 
 .cam_block {
 	width: 320px;
 	padding: 1px;
 	margin: 0px;
+	border: 0px;
 	display: inline-block;
 	/*border: 1px solid #f00;*/
 	background-color: #eee;
@@ -26,16 +65,14 @@
 	/*display: inline-block;*/
 }
 
-.cam_img_container {
+.cam_img {
 	border: 0px;
 }
 
-#main {	
-	min-width: 800px; 
-	max-width: 1000px;
-	margin: auto; 
-}
+/* ========== UNGROUPED STYLE ELEMENTS ========== */
+
 #gallery { 
 	text-align: center; 
 }
+
 

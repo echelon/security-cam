@@ -1,9 +1,10 @@
 <div id="navbar">
-	<a href="./?gallery">Gallery</a> |
-	<a href="./?live">Live Feed</a> |
-	<a href="./?ajaxgallery">Ajax Demo</a> |
+	<a href="/">Main</a> |
+	<a href="/?gallery">Movement Detection Gallery</a> |
+	<a href="/?configure">Panorama View</a> |
+	<a href="/?configure">Configure</a> |
 	Logged in as <?php echo $auth->getUser()->getUsername(); ?>.
-		(<a href="./?logout=1">Logout</a>)
+		(<a href="/?logout=1">Logout</a>)
 
 	<hr />
 </div>

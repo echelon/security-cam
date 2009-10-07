@@ -51,7 +51,7 @@ class Auth
 	 * Dispatch to the appropriate authentication procedure function.
 	 * May exit the script in some cases (eg. HTTP redirect).
 	 */
-	public function dispatch()
+	public function authorize()
 	{
 		if(array_key_exists('username', $_POST)) {
 			return $this->doLogin();

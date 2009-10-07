@@ -24,7 +24,7 @@ $config = Config::getInstance();
 $config->readConfig();
 
 $auth = new Auth();
-$auth->dispatch();
+$auth->authorize();
 
 $user = $auth->getUser();
 $status = $auth->getStatus();
@@ -38,36 +38,54 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 	//$config->setUriPreference("local");
 }
 
-$page = 'login';
-$title = 'Please Authenticate';
-$error = '';
-switch($status) {
-	case Auth::LOGGED_IN:
-		$page = 'camview';
-		$title = 'Camera View';
-		break;
-	case Auth::FAILED_LOGIN:
-		$title = 'Please Authenticate Again';
-		$error = 'Failed credentials';
-		break;
-	case Auth::REDIRECTING:
-		exit();
-	case Auth::NOT_LOGGED_IN:
-	default:
-		break;		
-}
+/**
+ * Function to return which page to show, page title, errors, etc.
+ * Used by the view.
+ * TODO: This is very bad/lazy code.
+ */
+function getPage()
+{
+	// XXX XXX XXX XXX BAD 
+	global $status;
 
-if(array_key_exists('gallery', $_GET)) {
-	require_once('gallerypage.php');
-	$title = 'Motion Detection Gallery';
-	$page = 'gallery';
-}
-else if(array_key_exists('live', $_GET)) {
-	$page = 'camview';
-}
-else if(array_key_exists('ajaxgallery', $_GET)) {
-	$page = 'ajaxgallery';
-	$title = 'Ajax Gallery (updates)';
+	// Defaults values:
+	$d['page'] = 'login.php';
+	$d['title'] = 'Please Authenticate';
+	$d['error'] = '';
+
+	switch($status) {
+		case Auth::LOGGED_IN:
+
+			$d['page'] = 'cam-multi.php';
+			$d['title'] = 'Multi-Camera View';
+
+			// See which page might be accessed.
+			if(array_key_exists('gallery', $_GET)) {
+				/*require_once('gallerypage.php');
+				$title = 'Motion Detection Gallery';
+				$page = 'gallery';*/ // TODO: Broken code.
+			}
+			else if(array_key_exists('singlecam', $_GET)) {
+				$d['page'] = 'cam-single.php';
+				$d['title'] = 'Camera View';
+			}
+
+			break;
+
+		case Auth::FAILED_LOGIN:
+			$d['title'] = 'Please Authenticate Again';
+			$d['error'] = 'Failed credentials';
+			$return = true;
+			break;
+
+		case Auth::REDIRECTING:
+			exit(); // FIXME: Not a good semantic place for this!
+
+		case Auth::NOT_LOGGED_IN:
+		default:
+			break;
+	}
+	return $d;
 }
 
 // Include HTML base file (very simple)
