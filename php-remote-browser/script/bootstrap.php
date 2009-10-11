@@ -34,9 +34,10 @@ if(isset($_GET['firewall'])) {
 }
 
 $config->setUriPreference("remote");
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-	//$config->setUriPreference("local");
+if($_SERVER['REMOTE_ADDR'] == '127.0.0.1' && isset($_GET['local'])) {
+	$config->setUriPreference("local");
 }
+
 
 /**
  * Function to return which page to show, page title, errors, etc.

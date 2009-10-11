@@ -6,6 +6,7 @@
 	<head>
 		<title><?php echo $d['title']; ?></title>
 		<script type="text/javascript" src="/jquery.js"></script>
+		<script type="text/javascript" src="/jquery-ui.js"></script>
 		<script type="text/javascript" src="/ajaxcam.js"></script>
 		<?php
 			/*if($d['title'] == 'ajaxgallery') {
