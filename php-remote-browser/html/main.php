@@ -22,7 +22,9 @@
 				if($auth->getUser()) {
 					include('usernavbar.php');
 				}
-
+			?>
+			<div id="debug"></div>
+			<?php
 				// Don't want to include($page), but I'm lazy enough to do this:
 				/*switch($page) {
 					case 'camview':

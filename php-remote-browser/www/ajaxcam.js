@@ -1,3 +1,4 @@
+// TODO: This isn't ajax.
 
 /**
  * Remove URI hash
@@ -89,20 +90,21 @@ function reload2b() {
 		if(imgs[i].className != "cam_img") {
 			continue;
 		}
-		var img = new CamImage();
-		//alert(imgs[i].src);//http://test.cam/cam_info2#1255296347312 WHY?
+
+		var camImg = new CamImage();
 		var uri = uriRemoveHash(imgs[i].src);
+
 		if(!uri) {
 			uri = imgs[i].src;
 		}
-		//alert(uri);
-		img.src = uri + '#' + time;
-		//alert(img.src);
-		img.id = imgs[i].id;
-		//img.src = imgs[i].src;
-		img.onload(""); // TODO: temp comment
-		//imgs[i] = img; // TODO: temp comment
-		imgs[i].src = img.src;
+		camImg.src = uri + '#' + time;
+		//$("div#debug").html("Test "+camImg.src);
+
+		camImg.id = imgs[i].id;
+		//camImg.onload(""); // TODO: temp comment
+		//imgs[i] = camImg; // TODO: temp comment
+		imgs[i].src = camImg.src;
+		imgs[i].onload = camImg.onload
 		//img.update();
 	}
 }
