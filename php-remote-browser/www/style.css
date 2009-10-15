@@ -34,35 +34,39 @@ a:active, a:hover {
 
 /* ========== MULTI-CAMERA PAGE ========== */
 
-#cameras {
+#camera_section {
 	padding: 0px;
 	margin: 0px;
 	text-align: center;
 }
 
 .cam_block {
-	width: 320px;
 	padding: 1px;
 	margin: 0px;
 	border: 0px;
 	display: inline-block;
-	/*border: 1px solid #f00;*/
 	background-color: #eee;
 	color: #222;
 	font-family: helvetica;
 }
 
+.cam_block_single {
+	width: 640px;
+}
+.cam_block_multi {
+	width: 320px;
+}
+
+.cam_info {
+}
+
 .cam_info1 {
 	float: left;
 	text-align: left;
-	/*width: 320px;*/
-	/*display: inline-block;*/
 }
 .cam_info2 {
 	float: right;
 	text-align: right;
-	/*width: 320px;*/
-	/*display: inline-block;*/
 }
 
 .cam_img {

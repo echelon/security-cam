@@ -9,44 +9,16 @@
 		<script type="text/javascript" src="/jquery.js"></script>
 		<script type="text/javascript" src="/jquery-ui.js"></script>
 		<script type="text/javascript" src="/camera.js"></script>
-		<?php
-			/*if($d['title'] == 'ajaxgallery') {
-				echo "<script type=\"text/javascript\" src=\"/ajaxcam.js\"></script>";
-			}*/
-		?>
 		<link rel="stylesheet" href="/style.css" type="text/css" />
 	</head>
 	<body>
 		<div id="main">
+			<div id="debug"></div>
 			<?php 
-
 				if($auth->getUser()) {
 					include('usernavbar.php');
+					include($d['page']);
 				}
-			?>
-			<div id="debug"></div>
-			<?php
-				// Don't want to include($page), but I'm lazy enough to do this:
-				/*switch($page) {
-					case 'camview':
-						include('camview.php');
-						break;
-					case 'gallery':
-						include('gallery.php');
-						break;
-					case 'ajaxgallery':
-						include('ajaxgallery.php');
-						break;
-					case 'login':
-						include('login.php');
-						break;
-					case 'error':
-					default:
-						include('error.php');
-				}*/
-
-				include($d['page']);
-
 			?>
 		</div>
 	</body>

@@ -62,11 +62,8 @@ function getPage()
 
 			// See which page might be accessed.
 			if(array_key_exists('gallery', $_GET)) {
-				/*require_once('gallerypage.php');
-				$title = 'Motion Detection Gallery';
-				$page = 'gallery';*/ // TODO: Broken code.
 			}
-			else if(array_key_exists('singlecam', $_GET)) {
+			else if(array_key_exists('viewcam', $_GET)) {
 				$d['page'] = 'cam-single.php';
 				$d['title'] = 'Camera View';
 			}
