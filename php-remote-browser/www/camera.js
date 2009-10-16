@@ -13,15 +13,6 @@ cameras = new Array();
  */
 RELOAD_TIMEOUT = 10;
 
-// TODO TEMP TEST
-calledToLoad = 1;
-isLastReqLoaded = 1;
-function test()
-{
-	$("#debug").text("calledToLoad: "+ calledToLoad + ", isLastReqLoaded: " +
-				isLastReqLoaded);
-}
-
 /**
  * Remove URI hash
  * Removes any #foo... hash from the uri.
@@ -76,7 +67,7 @@ function CamImage(orig)
 	/**
 	 * Last request loaded properly?
 	 */
-	this.isLastReqLoaded = true;
+	this.isLastReqLoaded = true; // TODO: Don't need both of these
 	this.calledToLoad = false;
 
 	/**
@@ -88,7 +79,7 @@ function CamImage(orig)
 
 	/**
 	 * Onload callback.
-	 * Updates the time display.  TODO: TEMP RENAME onload2
+	 * Updates the time display.
 	 */
 	this.onload = function() 
 	{
@@ -180,4 +171,29 @@ $(document).ready(function() {
 	setInterval("timedReload()", 1000);
 });
 
+/**
+ * Change cookies for "local".
+ */
+function checkboxLocal()
+{
+	if(document.getElementById("checkbox_local").checked) {
+		$.cookie("local", "1", { expires: 10 });
+	}
+	else {
+		$.cookie("local", "0", { expires: 10 });
+	}
+}
+
+/**
+ * Change cookies for "firewall".
+ */
+function checkboxFirewall()
+{
+	if(document.getElementById("checkbox_firewall").checked) {
+		$.cookie("firewall", "1", { expires: 10 });
+	}
+	else {
+		$.cookie("firewall", "0", { expires: 10 });
+	}
+}
 

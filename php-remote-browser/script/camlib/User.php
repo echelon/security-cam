@@ -56,5 +56,30 @@ class User
 		}
 		return false;
 	}
+
+	/**
+	 * Return whether the user has set the "local" cookie.
+	 * Determines which set of camera URIs to show.
+	 * Cookie set by Javascript or URI parameter.
+	 */
+	function isLocal()
+	{
+		if(!array_key_exists('local', $_COOKIE)) {
+			return false;
+		}
+		return (bool)$_COOKIE['local'];
+	}
+
+	/**
+	 * Return whether the user has set the "firewall" cookie.
+	 * Determines which set of camera URIs to show.
+	 */
+	function isFirewall()
+	{
+		if(!array_key_exists('firewall', $_COOKIE)) {
+			return false;
+		}
+		return (bool)$_COOKIE['firewall'];
+	}
 }
 

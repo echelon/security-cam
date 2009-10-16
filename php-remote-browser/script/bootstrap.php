@@ -29,13 +29,23 @@ $auth->authorize();
 $user = $auth->getUser();
 $status = $auth->getStatus();
 
-if(isset($_GET['firewall'])) {
+if(isset($_GET['firewall']) || $user->isFirewall()) {
 	$config->setFirewalled();
+	// TODO: Setcookie in javascript/PHP mismatch domains!
+	//setcookie('firewall', true, time()+60*60*24*10, '/', $config->domain);
 }
 
 $config->setUriPreference("remote");
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1' && isset($_GET['local'])) {
-	$config->setUriPreference("local");
+if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+	if(isset($_GET['local']) || $user->isLocal()) {
+		$config->setUriPreference("local");
+		// TODO: Setcookie in javascript/PHP mismatch domains!
+		//setcookie('local', 1, time()+60*60*24*10, '/', $config->domain);
+	}
+}
+else {
+	// TODO: Setcookie in javascript/PHP mismatch domains!
+	//setcookie('local', 0, time()+60*60*24*10, '/', $config->domain);
 }
 
 

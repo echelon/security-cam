@@ -13,9 +13,10 @@
 			<span class="cam_info2" 
 				  id="ajaximg<?php echo $id; ?>_status">Not updated</span>
 			<span class="cam_img_container">
-				<img src="<?php echo $cam->jpeg(3, 5); ?>" class="cam_img" 
+				<a href="/"
+				><img src="<?php echo $cam->jpeg(3, 5); ?>" class="cam_img" 
 					 id="ajaximg<?php echo $id; ?>" width="640" height="480"  
-					 alt="<?php echo $cam->getModel(); ?>" />
+					 alt="<?php echo $cam->getModel(); ?>" /></a>
 			</span>
 		</span>
 </div>

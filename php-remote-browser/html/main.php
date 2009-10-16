@@ -7,7 +7,7 @@
 	<head>
 		<title><?php echo $d['title']; ?></title>
 		<script type="text/javascript" src="/jquery.js"></script>
-		<script type="text/javascript" src="/jquery-ui.js"></script>
+		<script type="text/javascript" src="/jquery-cookie.js"></script>
 		<script type="text/javascript" src="/camera.js"></script>
 		<link rel="stylesheet" href="/style.css" type="text/css" />
 	</head>
