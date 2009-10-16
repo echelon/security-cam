@@ -17,8 +17,8 @@
 			<?php 
 				if($auth->getUser()) {
 					include('usernavbar.php');
-					include($d['page']);
 				}
+				include($d['page']);
 			?>
 		</div>
 	</body>

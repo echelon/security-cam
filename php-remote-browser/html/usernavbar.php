@@ -6,10 +6,10 @@
 	<?php echo $auth->getUser()->getUsername(); ?>
 		(<a href="/?logout=1">logout</a>)
 	<input type="checkbox" name="local" 
-		   onclick="checkboxLocal();" id="checkbox_local"
+		   onclick="checkboxClick('local');" id="checkbox_local"
 		<?php echo $user->isLocal()? "checked=\"checked\"" : ""; ?> /> local 
 	<input type="checkbox" name="firewall" 
-		   onclick="checkboxFirewall();" id="checkbox_firewall"
+		   onclick="checkboxClick('firewall');" id="checkbox_firewall"
 		<?php echo $user->isFirewall()? "checked=\"checked\"" : ""; ?> /> firewall 
 	<hr />
 </div>

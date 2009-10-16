@@ -29,7 +29,7 @@ $auth->authorize();
 $user = $auth->getUser();
 $status = $auth->getStatus();
 
-if(isset($_GET['firewall']) || $user->isFirewall()) {
+if(isset($_GET['firewall']) || ($user && $user->isFirewall())) {
 	$config->setFirewalled();
 	// TODO: Setcookie in javascript/PHP mismatch domains!
 	//setcookie('firewall', true, time()+60*60*24*10, '/', $config->domain);
@@ -37,7 +37,7 @@ if(isset($_GET['firewall']) || $user->isFirewall()) {
 
 $config->setUriPreference("remote");
 if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-	if(isset($_GET['local']) || $user->isLocal()) {
+	if(isset($_GET['local']) || ($user && $user->isLocal())) {
 		$config->setUriPreference("local");
 		// TODO: Setcookie in javascript/PHP mismatch domains!
 		//setcookie('local', 1, time()+60*60*24*10, '/', $config->domain);

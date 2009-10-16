@@ -172,28 +172,38 @@ $(document).ready(function() {
 });
 
 /**
- * Change cookies for "local".
+ * Change cookies when checkboxes are clicked.
  */
-function checkboxLocal()
+function checkboxClick(which)
 {
-	if(document.getElementById("checkbox_local").checked) {
-		$.cookie("local", "1", { expires: 10 });
+	var local = document.getElementById("checkbox_local");
+	var firewall = document.getElementById("checkbox_firewall");
+
+	if(local.checked && firewall.checked) {
+		if(which == 'local') {
+			firewall.checked = false;
+		}
+		else if(which == 'firewall') {
+			local.checked = false;
+		}
+	}
+
+	$.cookie("local", local.checked? "1" : "0", { expires: 10 });
+	$.cookie("firewall", firewall.checked? "1" : "0", { expires: 10 });
+
+	/*if(local.checked) {
+		
 	}
 	else {
 		$.cookie("local", "0", { expires: 10 });
 	}
-}
 
-/**
- * Change cookies for "firewall".
- */
-function checkboxFirewall()
-{
-	if(document.getElementById("checkbox_firewall").checked) {
+	if(firewall.checked) {
 		$.cookie("firewall", "1", { expires: 10 });
 	}
 	else {
 		$.cookie("firewall", "0", { expires: 10 });
-	}
+	}*/
+	window.location.reload(); // TODO: Should I do this?
 }
 
